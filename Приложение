@@ -1,0 +1,230 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <clocale>
+#define YEAR_SIZE 6
+#define NAME_SIZE 12
+#define COURSE_SIZE 6
+#define SUBJECT_SIZE 6
+#define NUMBER_WIDTH 2
+using namespace std;
+
+struct Student
+{
+	char name[NAME_SIZE]{};
+	char surname[NAME_SIZE]{};
+	char midle_name[NAME_SIZE]{};
+	int year;
+	int course;
+	int subject1;
+	int subject2;
+	int subject3;
+	int subject4;
+	int subject5;
+};
+const int n = 20;
+Student students[n] = {};
+
+void zapros(int n)
+{
+}
+
+void vivod_table()
+{
+	cout << endl;
+	cout << left << setw(NUMBER_WIDTH) << "№" << "|";
+	cout << left << setw(NAME_SIZE) << "Фамилия" << "|";
+	cout << left << setw(NAME_SIZE) << "Имя" << "|";
+	cout << left << setw(NAME_SIZE) << "Отчество" << "|";
+	cout << left << setw(YEAR_SIZE) << "Год" << "|";
+	cout << left << setw(COURSE_SIZE) << "Курс" << "|";
+	cout << left << setw(SUBJECT_SIZE) << "Предмет 1" << "|";
+	cout << left << setw(SUBJECT_SIZE) << "Предмет 2" << "|";
+	cout << left << setw(SUBJECT_SIZE) << "Предмет 3" << "|";
+	cout << left << setw(SUBJECT_SIZE) << "Предмет 4" << "|";
+	cout << left << setw(SUBJECT_SIZE) << "Предмет 5" << "|";
+
+}
+
+void vivod_student(int kolu)
+{
+	cout << endl;
+	cout << left << setw(NUMBER_WIDTH) << (kolu + 1) << "|";
+	cout << left << setw(NAME_SIZE) << students[kolu].name << "|";
+	cout << left << setw(NAME_SIZE) << students[kolu].surname << "|";
+	cout << left << setw(NAME_SIZE) << students[kolu].midle_name << "|";
+	cout << left << setw(YEAR_SIZE) << students[kolu].year << "|";
+	cout << left << setw(COURSE_SIZE) << students[kolu].course << "|";
+	cout << left << setw(SUBJECT_SIZE) << students[kolu].subject1 << "   |" ;
+	cout << left << setw(SUBJECT_SIZE) << students[kolu].subject2  << "   |";
+	cout << left << setw(SUBJECT_SIZE) << students[kolu].subject3 << "   |";
+	cout << left << setw(SUBJECT_SIZE) << students[kolu].subject3 << "   |";
+	cout << left << setw(SUBJECT_SIZE) << students[kolu].subject5 << "   |";
+
+}
+
+int get_value()
+{
+	int kol = 12;
+
+	int value{ -1 };
+	while (not (cin >> value) or (value < 0) or (value > kol))
+	{
+		cin.clear();
+		cin.ignore();
+		cout << endl;
+		cout << "Ошибка! Введите верное значение." << endl;
+		cout << "Ввод: ";
+	}
+	return value;
+}
+
+void vvod(int kolu)
+{
+
+	for (int i{}; i < kolu; i++)
+	{
+		cout << "Введите Имя: ";
+		cin >> students[i].name;
+
+		cout << "Введите Фамилию: ";
+		cin >> students[i].surname;
+
+		cout << "Введите Отчество: ";
+		cin >> students[i].midle_name;
+
+		cout << "Введите год рождения: ";
+		cin >> students[i].year;
+
+		cout << "Введите курс: ";
+		cin >> students[i].course;
+
+		cout << "Введите оценку по 1ому предмету: ";
+		cin >> students[i].subject1;
+
+		cout << "Введите оценку по 2ому предмету: ";
+		cin >> students[i].subject2;
+
+		cout << "Введите оценку по 3eму предмету: ";
+		cin >> students[i].subject3;
+
+		cout << "Введите оценку по 4ому предмету: ";
+		cin >> students[i].subject4;
+
+		cout << "Введите оценку по 5ому предмету: ";
+		cin >> students[i].subject5;
+		cout << endl;
+	}
+}
+
+void menu()
+{
+
+	cout << endl;
+	cout << "Здравствуйте, Пользователь!" << endl;
+	cout << endl;
+	cout << "Выберите опцию:" << endl;
+	cout << "1. Ввод информации с клавиатуры" << endl;
+	cout << "2. Ввод информации из файла" << endl;
+	cout << "3. Ввод информации из бинарного файла" << endl;
+	cout << "4. Распечатка таблицы" << endl;
+	cout << "5. Вывод даных в файл" << endl;
+	cout << "6. Распечатка по запросу" << endl;
+	cout << "7. Перевод БД в Текстовый файл" << endl;
+	cout << "8. Перевод текстового файла в бинарный файл" << endl;
+	cout << "9. Добавление записи" << endl;
+	cout << "10. Изменение записи" << endl;
+	cout << "11. Удаление записи " << endl;
+	cout << "12. Сортировка" << endl;
+	cout << "0. Выход" << endl;
+	cout << "Ввод: ";
+
+}
+
+int main()
+{
+	
+	setlocale(LC_CTYPE, "");
+	system("chcp 1251 > nul");
+	int kolu{}, kol{};
+	int value{ 1 };
+	while (value)
+	{
+
+		menu();
+		value = get_value();
+
+		switch (value)
+		{
+		case 0:
+			cout << "Вы вышли из программы. " << endl;
+			break;
+		case 1:
+			cout << endl;
+			cout << "Введите количество учеников: ";
+			cin >> kolu;
+			cout << endl;
+			if (cin.fail())
+			{
+				cout << "Ошибка: введено не число!" << endl;
+				return 1;
+			}
+			if (kolu < 0)
+			{
+				cout << "Введите положительное число учеников" << endl;
+				break;
+			}
+			vvod(kolu);
+
+			break;
+
+		case 2:
+			//vvodfail();
+			//break;
+		case 3:
+			//vvodbi();
+			//break;
+		case 4:
+			if (kolu > 0)
+			{
+				vivod_table();
+				for (int i = 0; i < kolu; ++i) {
+					vivod_student(i);
+				}
+			}
+			else
+			{
+				cout << "Не записана не один ученик." << endl;
+			}
+
+			break;
+		case 5:
+			//vivodtext();
+			//break;
+		case 6:
+			//zapros();
+			//break;
+		case 7:
+			//bdvtext();
+			//break;
+		case 8:
+			//bdvtext();
+			//break;
+		case 9:
+			//dobzapis();
+			//break;
+		case 10:
+			//izmzapis();
+			//break;
+		case 11:
+			//udalit();
+			//break;
+		case 12:
+			//sort();
+			break;
+		}
+
+
+	}
+	return 0;
+}
